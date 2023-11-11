@@ -30,6 +30,10 @@ module.exports = {
       updatedAt: {
         type: DataTypes.DATE,
         field: 'updated_at'
+      },
+      bundleItemId: {
+        type: DataTypes.STRING,
+        field: 'bundle_item_id'
       }
     })
   },

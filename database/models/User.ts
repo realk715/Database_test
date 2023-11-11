@@ -27,6 +27,11 @@ export class User extends Model<
   InferCreationAttributes<User, {omit: UserAssociations}>
 > {
   declare userId: CreationOptional<number>
+  declare name: string
+  declare age: number
+  declare tel: string
+  declare email: string
+  declare address: string
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
 
@@ -52,6 +57,26 @@ export class User extends Model<
       userId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false
+      },
+      name: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+      },
+      age: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      tel: {
+        type: DataTypes.STRING(15),
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      address: {
+        type: DataTypes.STRING(255),
         allowNull: false
       },
       createdAt: {

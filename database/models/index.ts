@@ -40,16 +40,16 @@ export function initModels(sequelize: Sequelize) {
     as: 'codes',
     foreignKey: 'code_item_id'
   })
-  Item.hasMany(Bundle, {
-    as: 'bundles',
+  Item.belongsTo(Bundle, {
+    as: 'bundle',
     foreignKey: 'bundle_item_id'
   })
   Promotion.belongsTo(Item, {
     as: 'item',
     foreignKey: 'promotion_item_id'
   })
-  Bundle.belongsTo(Item, {
-    as: 'item',
+  Bundle.hasMany(Item, {
+    as: 'items',
     foreignKey: 'bundle_item_id'
   })
 

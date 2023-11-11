@@ -9,6 +9,31 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
+      name: {
+        type: DataTypes.STRING(50),
+        field: 'name',
+        allowNull: false
+      },
+      age: {
+        type: DataTypes.INTEGER,
+        field: 'age',
+        allowNull: false
+      },
+      tel: {
+        type: DataTypes.STRING(15),
+        field: 'tel',
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING(255),
+        field: 'email',
+        allowNull: false
+      },
+      address: {
+        type: DataTypes.STRING(255),
+        field: 'address',
+        allowNull: false
+      },
       createdAt: {
         type: DataTypes.DATE,
         field: 'created_at'

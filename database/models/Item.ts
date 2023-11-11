@@ -1,5 +1,8 @@
 import {
   Association,
+  BelongsToGetAssociationMixin,
+  BelongsToSetAssociationMixin,
+  BelongsToCreateAssociationMixin,
   CreationOptional,
   DataTypes,
   HasManyGetAssociationsMixin,
@@ -25,7 +28,7 @@ import type { Bundle } from './Bundle'
 import type { Code } from './Code'
 import type { Promotion } from './Promotion'
 
-type ItemAssociations = 'promotion' | 'codes' | 'bundles'
+type ItemAssociations = 'promotion' | 'codes' | 'bundle'
 
 export class Item extends Model<
   InferAttributes<Item, {omit: ItemAssociations}>,
@@ -57,23 +60,16 @@ export class Item extends Model<
   declare hasCodes: HasManyHasAssociationsMixin<Code, number>
   declare countCodes: HasManyCountAssociationsMixin
   
-  // Item hasMany Bundle
-  declare bundles?: NonAttribute<Bundle[]>
-  declare getBundles: HasManyGetAssociationsMixin<Bundle>
-  declare setBundles: HasManySetAssociationsMixin<Bundle, string>
-  declare addBundle: HasManyAddAssociationMixin<Bundle, string>
-  declare addBundles: HasManyAddAssociationsMixin<Bundle, string>
-  declare createBundle: HasManyCreateAssociationMixin<Bundle>
-  declare removeBundle: HasManyRemoveAssociationMixin<Bundle, string>
-  declare removeBundles: HasManyRemoveAssociationsMixin<Bundle, string>
-  declare hasBundle: HasManyHasAssociationMixin<Bundle, string>
-  declare hasBundles: HasManyHasAssociationsMixin<Bundle, string>
-  declare countBundles: HasManyCountAssociationsMixin
+  // Item belongsTo Bundle
+  declare bundle?: NonAttribute<Bundle>
+  declare getBundle: BelongsToGetAssociationMixin<Bundle>
+  declare setBundle: BelongsToSetAssociationMixin<Bundle, string>
+  declare createBundle: BelongsToCreateAssociationMixin<Bundle>
   
   declare static associations: {
     promotion: Association<Item, Promotion>,
     codes: Association<Item, Code>,
-    bundles: Association<Item, Bundle>
+    bundle: Association<Item, Bundle>
   }
 
   static initModel(sequelize: Sequelize): typeof Item {

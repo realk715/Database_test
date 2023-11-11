@@ -1,10 +1,17 @@
 import {
   Association,
-  BelongsToGetAssociationMixin,
-  BelongsToSetAssociationMixin,
-  BelongsToCreateAssociationMixin,
   CreationOptional,
   DataTypes,
+  HasManyGetAssociationsMixin,
+  HasManySetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyAddAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  HasManyRemoveAssociationMixin,
+  HasManyRemoveAssociationsMixin,
+  HasManyHasAssociationMixin,
+  HasManyHasAssociationsMixin,
+  HasManyCountAssociationsMixin,
   InferCreationAttributes,
   InferAttributes,
   Model,
@@ -13,7 +20,7 @@ import {
 } from 'sequelize'
 import type { Item } from './Item'
 
-type BundleAssociations = 'item'
+type BundleAssociations = 'items'
 
 export class Bundle extends Model<
   InferAttributes<Bundle, {omit: BundleAssociations}>,
@@ -26,14 +33,21 @@ export class Bundle extends Model<
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
 
-  // Bundle belongsTo Item
-  declare item?: NonAttribute<Item>
-  declare getItem: BelongsToGetAssociationMixin<Item>
-  declare setItem: BelongsToSetAssociationMixin<Item, number>
-  declare createItem: BelongsToCreateAssociationMixin<Item>
+  // Bundle hasMany Item
+  declare items?: NonAttribute<Item[]>
+  declare getItems: HasManyGetAssociationsMixin<Item>
+  declare setItems: HasManySetAssociationsMixin<Item, number>
+  declare addItem: HasManyAddAssociationMixin<Item, number>
+  declare addItems: HasManyAddAssociationsMixin<Item, number>
+  declare createItem: HasManyCreateAssociationMixin<Item>
+  declare removeItem: HasManyRemoveAssociationMixin<Item, number>
+  declare removeItems: HasManyRemoveAssociationsMixin<Item, number>
+  declare hasItem: HasManyHasAssociationMixin<Item, number>
+  declare hasItems: HasManyHasAssociationsMixin<Item, number>
+  declare countItems: HasManyCountAssociationsMixin
   
   declare static associations: {
-    item: Association<Bundle, Item>
+    items: Association<Bundle, Item>
   }
 
   static initModel(sequelize: Sequelize): typeof Bundle {
