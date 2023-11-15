@@ -1,5 +1,5 @@
 # Entity Relationship Diagram
-![Screenshot](./images/diagram.png)
+![Screenshot](./database//images/diagram.png)
 
 # Relationship
 user กับ code มีความสัมพันธ์เป็น one-to-many เพราะว่า userเดียวสามารถมีcodeได้หลายcode 
